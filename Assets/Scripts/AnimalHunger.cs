@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AnimalHunger : MonoBehaviour
-{
+public class AnimalHunger : MonoBehaviour{
     public Slider hungerSlider;
     public int amountToBeFed;
     private int currentFedAmount = 0;
     private GameManager gameManager;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start(){
+        //set up the maxValue of the slider, as well as the GameManager variable
         hungerSlider.maxValue = amountToBeFed;
         hungerSlider.value = 0;
         hungerSlider.fillRect.gameObject.SetActive(false);
@@ -21,18 +19,16 @@ public class AnimalHunger : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update(){
         
     }
 
-    public void FeedAnimal(int amount)
-    {
+    //create a new method that will be called to update the current fed amount of the animal
+    public void FeedAnimal(int amount){
         currentFedAmount += amount;
         hungerSlider.fillRect.gameObject.SetActive(true);
         hungerSlider.value = currentFedAmount;
-        if(currentFedAmount >= amountToBeFed)
-        {
+        if(currentFedAmount >= amountToBeFed){
             gameManager.AddScore(amountToBeFed);
             Destroy(gameObject, 0.1f);
         }
